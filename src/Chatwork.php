@@ -18,18 +18,18 @@ class Chatwork
     /**
      * @var string API Endpoint
      */
-    protected $endpoint;
+    protected $endpoint = 'https://api.chatwork.com/v2';
 
     /**
      * @param null            $token
      * @param HttpClient|null $httpClient
      * @param string          $endpoint
      */
-    public function __construct($token = null, HttpClient $httpClient = null, $endpoint = 'https://api.chatwork.com/v2')
+    public function __construct($token = null, HttpClient $httpClient = null, $endpoint = null)
     {
         $this->token = $token;
         $this->http = $httpClient;
-        $this->endpoint = $endpoint;
+        $this->endpoint = isset($endpoint) ?: $this->endpoint;
     }
 
     /**

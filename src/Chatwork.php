@@ -29,7 +29,7 @@ class Chatwork
     {
         $this->token = $token;
         $this->http = $httpClient;
-        $this->endpoint = isset($endpoint) ?: $this->endpoint;
+        $this->endpoint = isset($endpoint) ? $endpoint : $this->endpoint;
     }
 
     /**

@@ -4,7 +4,7 @@ namespace NotificationChannels\Chatwork;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
-use NotificationChannels\Telegram\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification;
 
 class Chatwork
 {
@@ -15,13 +15,20 @@ class Chatwork
     protected $token;
 
     /**
+     * @var string API Endpoint
+     */
+    protected $endpoint;
+
+    /**
      * @param null            $token
      * @param HttpClient|null $httpClient
+     * @param string          $endpoint
      */
-    public function __construct($token = null, HttpClient $httpClient = null)
+    public function __construct($token = null, HttpClient $httpClient = null, $endpoint = 'https://api.chatwork.com/v2')
     {
         $this->token = $token;
         $this->http = $httpClient;
+        $this->endpoint = $endpoint;
     }
 
     /**
@@ -44,11 +51,12 @@ class Chatwork
      * ];
      * </code>
      *
-     * @param array $params
+     * @param array    $params
      *
      * @var int|string $params ['room_id']
      * @var string     $params ['text']
      *
+     * @throws CouldNotSendNotification
      * @return bool
      */
     public function sendMessage($params)
@@ -56,34 +64,28 @@ class Chatwork
         if (empty($this->token)) {
             throw CouldNotSendNotification::serviceRespondedWithAnError('You must provide your chatwork api token to make any API requests.');
         }
-        if (! array_key_exists('room_id', $params)) {
+        if (!array_key_exists('room_id', $params)) {
             throw CouldNotSendNotification::serviceRespondedWithAnError('Chatwork RoomId is empty');
         }
-        if (! is_numeric($params['room_id'])) {
+        if (!is_numeric($params['room_id'])) {
             throw CouldNotSendNotification::serviceRespondedWithAnError('Chatwork RoomId must be a number.');
         }
 
         $roomId = $params['room_id'];
         $message = $params['text'];
 
-        $option = ['body' => $message];
-        $ch = null;
+        $url = $this->endpoint . '/rooms/' . $roomId . '/messages';
+
         try {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'https://api.chatwork.com/v1/rooms/'.$roomId.'/messages');
-            curl_setopt($ch, CURLOPT_HTTPHEADER, ['X-ChatWorkToken: '.$this->token]);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($option, '', '&'));
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // or // curl_setopt($ch, CURLOPT_CAINFO, '/path/to/cacert.pem');
-            $response = curl_exec($ch);
+            $response = $this->http->post($url, [
+                'headers'     => ['X-ChatWorkToken' => $this->token],
+                'form_params' => ['body' => $message],
+            ]);
+
         } catch (ClientException $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
         } catch (\Exception $exception) {
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
-        } finally {
-            if ($ch != null) {
-                curl_close($ch);
-            }
         }
 
         return true;

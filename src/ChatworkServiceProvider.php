@@ -13,14 +13,14 @@ class ChatworkServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->when(ChatworkChannel::class)
-                ->needs(Chatwork::class)
-                ->give(function () {
-                    $config = config('services.chatwork');
-
-                    return new Chatwork(
-                            $config['api_token'], new HttpClient()
-                    );
-                });
+                  ->needs(Chatwork::class)
+                  ->give(function () {
+                      return new Chatwork(
+                          config('services.chatwork.api_token'),
+                          new HttpClient(),
+                          config('services.chatwork.endpoint')
+                      );
+                  });
     }
 
     /**

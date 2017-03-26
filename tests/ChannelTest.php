@@ -20,6 +20,7 @@ class ChannelTest extends TestCase
         $this->app['config']->set('services.chatwork.api_token', 'API_TOKEN');
         $response = new Response(201);
         $guzzle = Mockery::mock(new Client());
+        $guzzle->shouldReceive('post');
         $client = Mockery::mock(new Chatwork('TOKEN', $guzzle));
         $channel = new ChatworkChannel($client);
         $channel->send(new TestNotifiable(), new TestNotificationChatworkMessage());
@@ -31,6 +32,7 @@ class ChannelTest extends TestCase
         $this->app['config']->set('services.chatwork.api_token', 'API_TOKEN');
         $response = new Response(201);
         $guzzle = Mockery::mock(new Client());
+        $guzzle->shouldReceive('post');
         $client = Mockery::mock(new Chatwork('TOKEN', $guzzle));
         $channel = new ChatworkChannel($client);
         $channel->send(new TestNotifiable(), new TestNotificationChatworkInformation());

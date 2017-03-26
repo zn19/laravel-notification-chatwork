@@ -4,6 +4,7 @@ namespace NotificationChannels\Chatwork;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7;
 use NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification;
 
 class Chatwork
@@ -83,9 +84,12 @@ class Chatwork
             ]);
 
         } catch (ClientException $exception) {
-            throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
+            echo Psr7\str($exception->getRequest());
+            if ($exception->hasResponse()) {
+                echo Psr7\str($exception->getResponse());
+            }
         } catch (\Exception $exception) {
-            throw CouldNotSendNotification::serviceRespondedWithAnError($exception);
+            echo $exception->getMessage();
         }
 
         return true;

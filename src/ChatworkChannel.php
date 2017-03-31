@@ -17,7 +17,7 @@ class ChatworkChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
+     * @param mixed                                  $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
      * @throws \NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification
@@ -35,13 +35,18 @@ class ChatworkChannel
             return;
         }
 
+        $token = $notifiable->routeNotificationFor('chatwork-token');
+        if (empty($token)) {
+            $token = $chatworkMessage->token;
+        }
+        
         $sendText = '';
         if (is_a($chatworkMessage, ChatworkMessage::class)) {
             // normal message
             $sendText .= $chatworkMessage->message;
         } else {
             // information message
-            $sendText .= '[info][title]'.$chatworkMessage->informationTitle.'[/title]';
+            $sendText .= '[info][title]' . $chatworkMessage->informationTitle . '[/title]';
             $sendText .= $chatworkMessage->informationMessage;
             $sendText .= '[/info]';
         }
@@ -49,9 +54,10 @@ class ChatworkChannel
         $params = [];
         $params['room_id'] = $roomId;
         $params['text'] = $sendText;
+        $params['token'] = $token;
 
         $result = $this->chatwork->sendMessage($params);
-        if (! $result) {
+        if (!$result) {
             throw CouldNotSendNotification::serviceRespondedWithAnError(null);
         }
     }

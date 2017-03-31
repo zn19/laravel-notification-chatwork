@@ -7,6 +7,7 @@ class ChatworkInformation
     public $roomId;
     public $informationTitle;
     public $informationMessage;
+    public $token;
 
     public static function create($informationTitle, $informationMessage = '')
     {
@@ -22,7 +23,8 @@ class ChatworkInformation
     /**
      * Set the message post room id.
      *
-     * @param  string  $roomId
+     * @param  string $roomId
+     *
      * @return $this
      */
     public function roomId($roomId)
@@ -35,7 +37,8 @@ class ChatworkInformation
     /**
      * Set the information title.
      *
-     * @param  string  $informationTitle
+     * @param  string $informationTitle
+     *
      * @return $this
      */
     public function informationTitle($informationTitle)
@@ -48,12 +51,27 @@ class ChatworkInformation
     /**
      * Set the message information message.
      *
-     * @param  string  $informationBody
+     * @param  string $informationBody
+     *
      * @return $this
      */
     public function informationMessage($informationMessage)
     {
         $this->informationMessage = $informationMessage;
+
+        return $this;
+    }
+
+    /**
+     * Set the token.
+     *
+     * @param  string $token
+     *
+     * @return $this
+     */
+    public function token($token)
+    {
+        $this->token = $token;
 
         return $this;
     }

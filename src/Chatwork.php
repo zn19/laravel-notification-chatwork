@@ -62,7 +62,13 @@ class Chatwork
      */
     public function sendMessage($params)
     {
-        if (empty($this->token)) {
+        if (empty($params['token'])) {
+            $token = $this->token;
+        } else {
+            $token = $params['token'];
+        }
+
+        if (empty($token)) {
             throw CouldNotSendNotification::serviceRespondedWithAnError('You must provide your chatwork api token to make any API requests.');
         }
         if (!array_key_exists('room_id', $params)) {
@@ -79,7 +85,7 @@ class Chatwork
 
         try {
             $response = $this->http->post($url, [
-                'headers'     => ['X-ChatWorkToken' => $this->token],
+                'headers'     => ['X-ChatWorkToken' => $token],
                 'form_params' => ['body' => $message],
             ]);
 

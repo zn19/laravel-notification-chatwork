@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Chatwork;
+namespace Revolution\NotificationChannels\Chatwork;
 
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Support\ServiceProvider;

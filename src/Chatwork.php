@@ -1,11 +1,11 @@
 <?php
 
-namespace NotificationChannels\Chatwork;
+namespace Revolution\NotificationChannels\Chatwork;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7;
-use NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification;
+use Revolution\NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification;
 
 class Chatwork
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Chatwork\Exceptions;
+namespace Revolution\NotificationChannels\Chatwork\Exceptions;
 
 class CouldNotSendNotification extends \Exception
 {

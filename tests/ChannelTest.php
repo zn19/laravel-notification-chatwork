@@ -1,16 +1,16 @@
 <?php
 
-namespace NotificationChannels\Chatwork\Test;
+namespace Revolution\NotificationChannels\Chatwork\Test;
 
 use Mockery;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Chatwork\Chatwork;
-use NotificationChannels\Chatwork\ChatworkChannel;
-use NotificationChannels\Chatwork\ChatworkMessage;
-use NotificationChannels\Chatwork\ChatworkInformation;
+use Revolution\NotificationChannels\Chatwork\Chatwork;
+use Revolution\NotificationChannels\Chatwork\ChatworkChannel;
+use Revolution\NotificationChannels\Chatwork\ChatworkMessage;
+use Revolution\NotificationChannels\Chatwork\ChatworkInformation;
 
 class ChannelTest extends TestCase
 {

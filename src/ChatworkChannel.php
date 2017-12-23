@@ -1,9 +1,9 @@
 <?php
 
-namespace NotificationChannels\Chatwork;
+namespace Revolution\NotificationChannels\Chatwork;
 
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification;
+use Revolution\NotificationChannels\Chatwork\Exceptions\CouldNotSendNotification;
 
 class ChatworkChannel
 {
@@ -39,7 +39,7 @@ class ChatworkChannel
         if (empty($token)) {
             $token = $chatworkMessage->token;
         }
-        
+
         $sendText = '';
         if (is_a($chatworkMessage, ChatworkMessage::class)) {
             // normal message

@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Chatwork;
+namespace Revolution\NotificationChannels\Chatwork;
 
 class ChatworkInformation
 {

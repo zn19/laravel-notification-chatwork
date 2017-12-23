@@ -1,7 +1,18 @@
-# Chatwork Notifications Channel for Laravel 5.3 
+# ChatWork Notifications Channel for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/luisdalmolin/laravel-zenvia-channel.svg?style=flat-square)](https://packagist.org/packages/e2info/chatwork-notifications)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+## オリジナルからの変更点
+フォークして使ってたけど毎回 composer.json で repositories の設定が面倒になってきたので別パッケージとして登録。
+
+- ChatWork API v2
+- メッセージごとに token 設定。別アカウントでも投稿するため。
+- PHP7.0以上
+- namespace 変更
+
+```php
+composer require revolution/laravel-notification-chatwork
+```
+
+
 
 This package makes it easy to send Chatwork messages using [Chatwork API](http://developer.chatwork.com/ja/) with Laravel 5.3.
 

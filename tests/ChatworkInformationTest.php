@@ -1,10 +1,11 @@
 <?php
 
-namespace NotificationChannels\Chatwork\Test;
+namespace Revolution\NotificationChannels\Chatwork\Test;
 
-use NotificationChannels\Chatwork\ChatworkInformation;
+use PHPUnit\Framework\TestCase;
+use Revolution\NotificationChannels\Chatwork\ChatworkInformation;
 
-class ChatworkInformationTest extends \PHPUnit_Framework_TestCase
+class ChatworkInformationTest extends TestCase
 {
     /** @test */
     public function it_can_accept_a_content_when_constructing_a_message()

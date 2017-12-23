@@ -1,6 +1,11 @@
 {
     "name": "revolution/laravel-notification-chatwork",
     "description": "Chatwork notifications channel for Laravel. (v2)",
+    "keywords": [
+        "chatwork",
+        "notification",
+        "laravel"
+    ],
     "homepage": "https://github.com/kawax/laravel-notification-chatwork/",
     "license": "MIT",
     "authors": [

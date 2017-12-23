@@ -8,10 +8,16 @@
 - PHP7.0以上
 - namespace 変更
 
-```php
+```
 composer require revolution/laravel-notification-chatwork
 ```
 
+```php
+use Revolution\NotificationChannels\Chatwork\ChatworkMessage;
+
+return (new ChatworkMessage())->token('token')
+                              ->message('message');
+```
 
 
 This package makes it easy to send Chatwork messages using [Chatwork API](http://developer.chatwork.com/ja/) with Laravel 5.3.

@@ -3,7 +3,6 @@
 namespace Revolution\NotificationChannels\Chatwork\Test;
 
 use PHPUnit\Framework\TestCase;
-
 use Revolution\NotificationChannels\Chatwork\ChatworkMessage;
 
 class ChatworkMessageTest extends TestCase

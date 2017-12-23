@@ -71,17 +71,17 @@ class Chatwork
         if (empty($token)) {
             throw CouldNotSendNotification::serviceRespondedWithAnError('You must provide your chatwork api token to make any API requests.');
         }
-        if (! array_key_exists('room_id', $params)) {
+        if (!array_key_exists('room_id', $params)) {
             throw CouldNotSendNotification::serviceRespondedWithAnError('Chatwork RoomId is empty');
         }
-        if (! is_numeric($params['room_id'])) {
+        if (!is_numeric($params['room_id'])) {
             throw CouldNotSendNotification::serviceRespondedWithAnError('Chatwork RoomId must be a number.');
         }
 
         $roomId = $params['room_id'];
         $message = $params['text'];
 
-        $url = $this->endpoint.'/rooms/'.$roomId.'/messages';
+        $url = $this->endpoint . '/rooms/' . $roomId . '/messages';
 
         try {
             $response = $this->http->post($url, [

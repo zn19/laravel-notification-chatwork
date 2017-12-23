@@ -46,7 +46,7 @@ class ChatworkChannel
             $sendText .= $chatworkMessage->message;
         } else {
             // information message
-            $sendText .= '[info][title]'.$chatworkMessage->informationTitle.'[/title]';
+            $sendText .= '[info][title]' . $chatworkMessage->informationTitle . '[/title]';
             $sendText .= $chatworkMessage->informationMessage;
             $sendText .= '[/info]';
         }
@@ -57,7 +57,7 @@ class ChatworkChannel
         $params['token'] = $token;
 
         $result = $this->chatwork->sendMessage($params);
-        if (! $result) {
+        if (!$result) {
             throw CouldNotSendNotification::serviceRespondedWithAnError(null);
         }
     }
